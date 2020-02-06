@@ -1,50 +1,80 @@
 <template>
-  <div class="app">
-    <section class="hero">
-      <div class="hero-body">
+  <div>
+    <div class="app" v-if="session.team != null">
+      <div class="chat">
+        <a href="mailto:foodcourt@roskilde-festival.dk">
+          <img src="@/assets/chat.svg" />
+        </a>
+      </div>
+      <section class="section language">
         <div class="container">
-          <h1 class="title">Bliv frivillig på i Food Court på Roskilde Festival</h1>
-          <h2
-            class="subtitle"
-          >Du kan blive frivillig på holdet {{ teams[session.team].name }} på Roskilde Festival i år</h2>
+          <span
+            class="text"
+            :class="{ 'has-text-weight-bold' : session.language == 'da' }"
+            v-on:click="session.language = 'da'"
+          >Dansk</span>
+          <span class="text">|</span>
+          <span
+            class="text"
+            :class="{ 'has-text-weight-bold' : session.language == 'en' }"
+            v-on:click="session.language = 'en'"
+          >English</span>
         </div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container">
-        <TextField
-          :headline="content[session.language].general.headline"
-          :text="content[session.language].general.text"
-        />
-        <TextField
-          v-if="teams[session.team].type == 'operations'"
-          :headline="content[session.language].operations.headline"
-          :text="content[session.language].operations.text"
-        />
-        <TextField
-          v-if="teams[session.team].type == 'dismantling'"
-          :headline="content[session.language].dismantling.headline"
-          :text="content[session.language].dismantling.text"
-        />
-        <TextField
-          :headline="content[session.language].benefits.headline"
-          :text="content[session.language].benefits.text"
-        />
-        <TextField
-          :headline="content[session.language].signup.headline"
-          :text="content[session.language].signup.text"
-        />
-        <div class="field is-grouped is-grouped-centered">
-          <p class="control">
-            <a
-              :href="teams[session.team].link"
-              class="button is-link"
-              target="_blank"
-            >Tilmeld dig {{ teams[session.team].name }}</a>
-          </p>
+      </section>
+      <section class="hero first">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title">{{ content[session.language].misc.overall }}</h1>
+            <h2
+              class="subtitle"
+            >{{ content[session.language].misc.team }} {{ teams[session.team].name }}</h2>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <section class="section">
+        <div class="container">
+          <TextField
+            :headline="content[session.language].general.headline"
+            :text="content[session.language].general.text"
+          />
+          <TextField
+            v-if="teams[session.team].type == 'operations'"
+            :headline="content[session.language].operations.headline"
+            :text="content[session.language].operations.text"
+          />
+          <TextField
+            v-if="teams[session.team].type == 'dismantling'"
+            :headline="content[session.language].dismantling.headline"
+            :text="content[session.language].dismantling.text"
+          />
+          <TextField
+            :headline="content[session.language].benefits.headline"
+            :text="content[session.language].benefits.text"
+          />
+          <TextField
+            :headline="content[session.language].signup.headline"
+            :text="content[session.language].signup.text"
+          />
+          <div class="field is-grouped is-grouped-centered last">
+            <p class="control">
+              <a
+                :href="teams[session.team].link"
+                class="button is-link"
+                target="_blank"
+              >{{ content[session.language].misc.cta }} {{ teams[session.team].name }}</a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="app" v-else>
+      <span
+        class="button is-link"
+        v-for="(item, key, index) in teams"
+        v-on:click="session.team = key"
+        :key="index"
+      >{{ item.name }}</span>
+    </div>
   </div>
 </template>
 
@@ -107,6 +137,12 @@ export default {
       },
       content: {
         da: {
+          misc: {
+            overall: "Bliv frivillig i Food Court på Roskilde Festival",
+            team:
+              "Læs mere om her, og bliv tilmeldt Roskilde Festival på holdet: ",
+            cta: "Tilmeld mig holdet: "
+          },
           general: {
             headline: "Food Court og Dining Service",
             text:
@@ -120,7 +156,7 @@ export default {
           dismantling: {
             headline: "Opgaven som frivllig",
             text:
-              "I Food Court og Dining Service har vi under festivalen tre afviklingshold, som hjælper boderne med at yde deres ypperste, så de kan levere deres retter.<br>Til det har vi seks serviceteams som samarbejder med boderne under festivaldagene.<br>Som frivillig på vores afviklingshold kan opgaverne omfatte funktioner som:<br><ul><li>Service og renhold af publikumsområderne</li><li>Praktisk hjælp til bodernes backstage faciliteter</li><li>Adgangskontrol til Food Courts lukkede bagområder</li></ul><br>På en vagt får hver enkelt frivillig rum til at rotere mellem de mange opgaver, så man ser flere sider af Food Court."
+              "I Food Court og Dining Service bygger vi alle vores boder, og genbruger en stor del af vores materialer. Derfor har vi brug for gode folk til at hjælpe med oprydning, nedtagning og nedpakning når festivalen er slut.<br>Som frivillig på vores nedtagningshold kan opgaverne omfatte funktioner som:<br><ul><li>Håndværksopgaver omkring nedtagning af boder</li><li>Oprydning på vores forskellige områder</li></ul><br>En vigtig ting at bemærke er at du har alle fordelene ved at være frivillig på festivalen, samtidigt med at du har fri i festivaldagene."
           },
           benefits: {
             headline: "Fordele og vilkår",
@@ -131,6 +167,39 @@ export default {
             headline: "Jeg vil gerne med!",
             text:
               "Fedt. Det er vi glade for! Klik på knappen nedenfor for at blive oprettet i festivalens system. Når du har gjort det skal du sende en mail til <a href='mailto:foodcourt@roskilde-festival.dk'>foodcourt@roskilde-festival.dk</a>. Vi sender dig en bekræftelse når du er tilmeldt. Det er også denne mail du skal skrive til, hvis du har spørgsmål."
+          }
+        },
+        en: {
+          misc: {
+            overall: "Volunteer in Food Court at Roskilde Festival",
+            team:
+              "Read more about, and sign up as a volunteer at Roskilde Festival on the team: ",
+            cta: "Sign up for the team: "
+          },
+          general: {
+            headline: "Food Court and Dining Service",
+            text:
+              "In Food Court and Dining Service we are facilitating 5 different food areas, with a wide range of food stalls and restaurants serving food for the participants at Roskilde Festival. <br>We focus on delivering different experiences in food, with focus on organic quality food."
+          },
+          operations: {
+            headline: "The tasks as a volunteer",
+            text:
+              "In Food Court og Dining Service we have three operations teams during the festival. It is these teams, that help the food stalls do their best, in serving delicious meals<br>To handle these tasks, we have six serviceteams that works during the festival days.<br>As a volunteer on our operation teams you can work with tasks such as:<br><ul><li>Service and cleaning the audience areas</li><li>Helping the food stalls in their backstage areas</li><li>Access control to the closed backstage areas at Food Court</li></ul><br>During a shift we aim to change between tasks, so that every volunteer will get to see different parts of Food Court during a shift."
+          },
+          dismantling: {
+            headline: "Opgaven som frivllig",
+            text:
+              "I Food Court og Dining Service har vi under festivalen tre afviklingshold, som hjælper boderne med at yde deres ypperste, så de kan levere deres retter.<br>Til det har vi seks serviceteams som samarbejder med boderne under festivaldagene.<br>Som frivillig på vores afviklingshold kan opgaverne omfatte funktioner som:<br><ul><li>Service og renhold af publikumsområderne</li><li>Praktisk hjælp til bodernes backstage faciliteter</li><li>Adgangskontrol til Food Courts lukkede bagområder</li></ul><br>På en vagt får hver enkelt frivillig rum til at rotere mellem de mange opgaver, så man ser flere sider af Food Court."
+          },
+          benefits: {
+            headline: "Benefits as a volunteer",
+            text:
+              "As a volunteer in Food Court at Roskilde Festival you will work a total of 24 hours during three shifts in the festival days.<br>We do not require any experience from the festival, only that you are ready to help and be part of our team in Food Court.<br>All of our volunteers will have the benefit that follows:<ul><li>A full festival ticket</li><li>Access to Backstage Village and Volunteers Lounge</li><li>Possibility to use volunteer camping with free how showers</li><li>This years Roskilde Festival volunteer t-shirt</li><li>Food and drinks during your shifts</li></ul>"
+          },
+          signup: {
+            headline: "Cool. I'm in!",
+            text:
+              "Nice. We are so happy to hear that! Click the button below to sign up using the festival's volunteer platform. When you have done that, please send an e-mail to <a href='mailto:foodcourt@roskilde-festival.dk'>foodcourt@roskilde-festival.dk</a>. You will recieve a confirmation, when you are correctly signed up. If you have any questions, this e-mail is also the place to send these."
           }
         }
       }
@@ -149,4 +218,34 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.chat {
+  img {
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    right: 0;
+    height: 15%;
+  }
+}
+.first {
+  padding-top: 0.5rem;
+}
+.last {
+  padding-bottom: 40px;
+}
+.language {
+  padding: 0.5rem 1.5rem !important;
+  position: fixed;
+  background-color: #fff;
+  width: 100%;
+  z-index: 1;
+  .text {
+    padding-right: 0.3rem;
+    cursor: pointer;
+  }
+}
+.button {
+  background-color: #ee7203 !important;
+}
+</style>
