@@ -21,6 +21,9 @@
           >English</span>
         </div>
       </section>
+      <div class="logo">
+        <img src="@/assets/logo.svg" />
+      </div>
       <section class="hero first">
         <div class="hero-body">
           <div class="container">
@@ -49,7 +52,7 @@
           />
           <TextField
             :headline="content[session.language].benefits.headline"
-            :text="content[session.language].benefits.text"
+            :text="replaceBenefits(content[session.language].benefits.text, teams[session.team].hours, teams[session.team].period[session.language])"
           />
           <TextField
             :headline="content[session.language].signup.headline"
@@ -92,45 +95,91 @@ export default {
         team: String
       },
       teams: {
+        general: {
+          type: "general",
+          name: "Foodcourt",
+          hours: "24-32",
+          period: {
+            da: "der kan ligge både under og efter festivalen",
+            en: "that can be both during and after the festival"
+          },
+          link:
+            "https://people-vol.roskilde-festival.dk/bliv-frivillig/?guid=8bc92622-889c-48b2-9cc7-a774f715332a"
+        },
         op1a: {
           type: "operations",
           name: "Driftshold 1A",
+          hours: "24",
+          period: {
+            da: "under festivalen",
+            en: "during the festival"
+          },
           link:
             "https://people-vol.roskilde-festival.dk/bliv-frivillig/?guid=3650162e-c6a9-4568-9a1f-f6aa4f204c36"
         },
         op1b: {
           type: "operations",
           name: "Driftshold 1B",
+          hours: "24",
+          period: {
+            da: "under festivalen",
+            en: "during the festival"
+          },
           link:
             "https://people-vol.roskilde-festival.dk/bliv-frivillig/?guid=58e9ce6f-8389-4599-8d07-eeb6803ca210"
         },
         op2a: {
           type: "operations",
           name: "Driftshold 2A",
+          hours: "24",
+          period: {
+            da: "under festivalen",
+            en: "during the festival"
+          },
           link:
             "https://people-vol.roskilde-festival.dk/bliv-frivillig/?guid=7e18f5d5-c0ac-4bcc-b159-79099961c0b7"
         },
         op2b: {
           type: "operations",
           name: "Driftshold 2B",
+          hours: "24",
+          period: {
+            da: "under festivalen",
+            en: "during the festival"
+          },
           link:
             "https://people-vol.roskilde-festival.dk/bliv-frivillig/?guid=001cfa59-1653-4586-a15c-446606f1dec4"
         },
         op3a: {
           type: "operations",
           name: "Driftshold 3A",
+          hours: "24",
+          period: {
+            da: "under festivalen",
+            en: "during the festival"
+          },
           link:
             "https://people-vol.roskilde-festival.dk/bliv-frivillig/?guid=60068612-e1f9-4b56-aa75-6dc4972ec39e"
         },
         op3b: {
           type: "operations",
           name: "Driftshold 3B",
+          hours: "24",
+          period: {
+            da: "under festivalen",
+            en: "during the festival"
+          },
           link:
             "https://people-vol.roskilde-festival.dk/bliv-frivillig/?guid=48139fa1-0d11-4635-8131-f14b0a25c044"
         },
         dis: {
           type: "dismantling",
           name: "Nedtagning",
+          hours: "32",
+          period: {
+            da: "efter festivalen",
+            en: "after the festival"
+          },
           link:
             "https://people-vol.roskilde-festival.dk/bliv-frivillig/?guid=e19c231c-f62b-47f6-b52f-b2ac93e6f7dd"
         }
@@ -161,7 +210,7 @@ export default {
           benefits: {
             headline: "Fordele og vilkår",
             text:
-              "Som frivillig i Food Court på Roskilde Festival er man på vagt i alt 24 timer fordelt på tre vagter under festivaldagene.<br>Der kræves ingen tidligere festivalerfaring, kun gåpåmod og villighed til at indgå i vores team i Food Court.<br>Alle vores frivillige får følgende:<ul><li>Entrébillet til hele festivalen</li><li>Adgang til Backstage Village og Volunteers Lounge</li><li>Mulighed for frivillig camping med gratis varme bade</li><li>Årets Roskilde Festival frivillig t-shirt</li><li>Forplejning under vagt</li></ul>"
+              "Som frivillig i Food Court på Roskilde Festival er man på vagt i alt ${hours} timer fordelt på tre vagter ${period}.<br>Der kræves ingen tidligere festivalerfaring, kun gåpåmod og villighed til at indgå i vores team i Food Court.<br>Alle vores frivillige får følgende:<ul><li>Entrébillet til hele festivalen</li><li>Adgang til Backstage Village og Volunteers Lounge</li><li>Mulighed for frivillig camping med gratis varme bade</li><li>Årets Roskilde Festival frivillig t-shirt</li><li>Forplejning under vagt</li></ul>"
           },
           signup: {
             headline: "Jeg vil gerne med!",
@@ -194,7 +243,7 @@ export default {
           benefits: {
             headline: "Benefits as a volunteer",
             text:
-              "As a volunteer in Food Court at Roskilde Festival you will work a total of 24 hours during three shifts in the festival days.<br>We do not require any experience from the festival, only that you are ready to help and be part of our team in Food Court.<br>All of our volunteers will have the benefit that follows:<ul><li>A full festival ticket</li><li>Access to Backstage Village and Volunteers Lounge</li><li>Possibility to use volunteer camping with free how showers</li><li>This years Roskilde Festival volunteer t-shirt</li><li>Food and drinks during your shifts</li></ul>"
+              "As a volunteer in Food Court at Roskilde Festival you will work a total of ${hours} hours during three shifts ${period}.<br>We do not require any experience from the festival, only that you are ready to help and be part of our team in Food Court.<br>All of our volunteers will have the benefit that follows:<ul><li>A full festival ticket</li><li>Access to Backstage Village and Volunteers Lounge</li><li>Possibility to use volunteer camping with free how showers</li><li>This years Roskilde Festival volunteer t-shirt</li><li>Food and drinks during your shifts</li></ul>"
           },
           signup: {
             headline: "Cool. I'm in!",
@@ -212,7 +261,16 @@ export default {
     setTeam: function() {
       let uri = window.location.search.substring(1);
       let params = new URLSearchParams(uri);
-      this.session.team = params.get("team");
+      if (params.get("team") != null) {
+        this.session.team = params.get("team");
+      } else {
+        this.session.team = "general";
+      }
+    },
+    replaceBenefits: function(text, hours, period) {
+      let res = text.replace("${hours}", hours);
+      let end = res.replace("${period}", period);
+      return end;
     }
   }
 };
@@ -228,11 +286,17 @@ export default {
     height: 15%;
   }
 }
-.first {
-  padding-top: 0.5rem;
+.logo {
+  padding-top: 5rem;
+  width: 15rem;
+  margin-right: auto;
+  margin-left: auto;
 }
 .last {
   padding-bottom: 40px;
+}
+.hero-body {
+  padding-bottom: 0rem !important;
 }
 .language {
   padding: 0.5rem 1.5rem !important;
