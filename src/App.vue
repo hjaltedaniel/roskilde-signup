@@ -21,6 +21,9 @@
           >English</span>
         </div>
       </section>
+      <div class="logo">
+        <img src="@/assets/logo.svg" />
+      </div>
       <section class="hero first">
         <div class="hero-body">
           <div class="container">
@@ -283,11 +286,17 @@ export default {
     height: 15%;
   }
 }
-.first {
-  padding-top: 0.5rem;
+.logo {
+  padding-top: 5rem;
+  width: 15rem;
+  margin-right: auto;
+  margin-left: auto;
 }
 .last {
   padding-bottom: 40px;
+}
+.hero-body {
+  padding-bottom: 0rem !important;
 }
 .language {
   padding: 0.5rem 1.5rem !important;
