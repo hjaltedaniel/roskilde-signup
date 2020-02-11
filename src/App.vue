@@ -51,6 +51,16 @@
             :text="content[session.language].dismantling.text"
           />
           <TextField
+            v-if="teams[session.team].type == 'general'"
+            :headline="content[session.language].operations.headline + ' ' + content[session.language].misc.operation"
+            :text="content[session.language].operations.text"
+          />
+          <TextField
+            v-if="teams[session.team].type == 'general'"
+            :headline="content[session.language].operations.headline + ' ' + content[session.language].misc.dismantling"
+            :text="content[session.language].dismantling.text"
+          />
+          <TextField
             :headline="content[session.language].benefits.headline"
             :text="replaceBenefits(content[session.language].benefits.text, teams[session.team].hours, teams[session.team].period[session.language])"
           />
@@ -100,8 +110,8 @@ export default {
           name: "Foodcourt",
           hours: "24-32",
           period: {
-            da: "der kan ligge både under og efter festivalen",
-            en: "that can be both during and after the festival"
+            da: "der ligger under (24t) eller efter festivalen (32t)",
+            en: "schedueled during (24h) or after the festival (32h)"
           },
           link:
             "https://people-vol.roskilde-festival.dk/bliv-frivillig/?guid=8bc92622-889c-48b2-9cc7-a774f715332a"
@@ -190,7 +200,9 @@ export default {
             overall: "Bliv frivillig i Food Court på Roskilde Festival",
             team:
               "Læs mere om her, og bliv tilmeldt Roskilde Festival på holdet: ",
-            cta: "Tilmeld mig holdet: "
+            cta: "Tilmeld mig holdet: ",
+            operation: "på driftshold",
+            dismantling: "på nedtagningshold"
           },
           general: {
             headline: "Food Court og Dining Service",
@@ -223,7 +235,9 @@ export default {
             overall: "Volunteer in Food Court at Roskilde Festival",
             team:
               "Read more about, and sign up as a volunteer at Roskilde Festival on the team: ",
-            cta: "Sign up for the team: "
+            cta: "Sign up for the team: ",
+            operation: "on operations team",
+            dismantling: "on dismantling team"
           },
           general: {
             headline: "Food Court and Dining Service",
@@ -236,9 +250,9 @@ export default {
               "In Food Court og Dining Service we have three operations teams during the festival. It is these teams, that help the food stalls do their best, in serving delicious meals<br>To handle these tasks, we have six serviceteams that works during the festival days.<br>As a volunteer on our operation teams you can work with tasks such as:<br><ul><li>Service and cleaning the audience areas</li><li>Helping the food stalls in their backstage areas</li><li>Access control to the closed backstage areas at Food Court</li></ul><br>During a shift we aim to change between tasks, so that every volunteer will get to see different parts of Food Court during a shift."
           },
           dismantling: {
-            headline: "Opgaven som frivllig",
+            headline: "The tasks as a volunteer",
             text:
-              "I Food Court og Dining Service har vi under festivalen tre afviklingshold, som hjælper boderne med at yde deres ypperste, så de kan levere deres retter.<br>Til det har vi seks serviceteams som samarbejder med boderne under festivaldagene.<br>Som frivillig på vores afviklingshold kan opgaverne omfatte funktioner som:<br><ul><li>Service og renhold af publikumsområderne</li><li>Praktisk hjælp til bodernes backstage faciliteter</li><li>Adgangskontrol til Food Courts lukkede bagområder</li></ul><br>På en vagt får hver enkelt frivillig rum til at rotere mellem de mange opgaver, så man ser flere sider af Food Court."
+              "In Food Court and Dining Service we are building all of our food stalls, and we are reusing a lot of our constructions. We need people to help cleaning up, dismantling and packing up when the festival has ended.<br>As a volunteer on our dismantling team the tasks can be:<br><ul><li>Dismantling of food stalls</li><li>Cleaning tasks in our different areas</li></ul><br>An important thing to consider, regarding this volunteer job is that you get all of the benefits that regular volunteers do, plus you are off duty during the days when the music plays."
           },
           benefits: {
             headline: "Benefits as a volunteer",
