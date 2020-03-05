@@ -217,7 +217,7 @@ export default {
           dismantling: {
             headline: "Opgaven som frivllig",
             text:
-              "I Food Court og Dining Service bygger vi alle vores boder, og genbruger en stor del af vores materialer. Derfor har vi brug for gode folk til at hjælpe med oprydning, nedtagning og nedpakning når festivalen er slut.<br>Som frivillig på vores nedtagningshold kan opgaverne omfatte funktioner som:<br><ul><li>Håndværksopgaver omkring nedtagning af boder</li><li>Oprydning på vores forskellige områder</li></ul><br>En vigtig ting at bemærke er at du har alle fordelene ved at være frivillig på festivalen, samtidigt med at du har fri i festivaldagene."
+              "<span class='has-text-weight-bold'>Vi gør opmærksom på at der ikke er flere pladser på nedtagningsholdet</span>I Food Court og Dining Service bygger vi alle vores boder, og genbruger en stor del af vores materialer. Derfor har vi brug for gode folk til at hjælpe med oprydning, nedtagning og nedpakning når festivalen er slut.<br>Som frivillig på vores nedtagningshold kan opgaverne omfatte funktioner som:<br><ul><li>Håndværksopgaver omkring nedtagning af boder</li><li>Oprydning på vores forskellige områder</li></ul><br>En vigtig ting at bemærke er at du har alle fordelene ved at være frivillig på festivalen, samtidigt med at du har fri i festivaldagene."
           },
           benefits: {
             headline: "Fordele og vilkår",
@@ -252,7 +252,7 @@ export default {
           dismantling: {
             headline: "The tasks as a volunteer",
             text:
-              "In Food Court and Dining Service we are building all of our food stalls, and we are reusing a lot of our constructions. We need people to help cleaning up, dismantling and packing up when the festival has ended.<br>As a volunteer on our dismantling team the tasks can be:<br><ul><li>Dismantling of food stalls</li><li>Cleaning tasks in our different areas</li></ul><br>An important thing to consider, regarding this volunteer job is that you get all of the benefits that regular volunteers do, plus you are off duty during the days when the music plays."
+              "<span class='has-text-weight-bold'>There is no free seats on the dismantling team</span>In Food Court and Dining Service we are building all of our food stalls, and we are reusing a lot of our constructions. We need people to help cleaning up, dismantling and packing up when the festival has ended.<br>As a volunteer on our dismantling team the tasks can be:<br><ul><li>Dismantling of food stalls</li><li>Cleaning tasks in our different areas</li></ul><br>An important thing to consider, regarding this volunteer job is that you get all of the benefits that regular volunteers do, plus you are off duty during the days when the music plays."
           },
           benefits: {
             headline: "Benefits as a volunteer",
