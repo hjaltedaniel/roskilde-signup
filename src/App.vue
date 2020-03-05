@@ -212,7 +212,7 @@ export default {
           operations: {
             headline: "Opgaven som frivllig",
             text:
-              "I Food Court og Dining Service har vi under festivalen tre afviklingshold, som hjælper boderne med at yde deres ypperste, så de kan levere deres retter.<br>Til det har vi seks serviceteams som samarbejder med boderne under festivaldagene.<br>Som frivillig på vores afviklingshold kan opgaverne omfatte funktioner som:<br><ul><li>Service og renhold af publikumsområderne</li><li>Praktisk hjælp til bodernes backstage faciliteter</li><li>Adgangskontrol til Food Courts lukkede bagområder</li></ul><br>På en vagt får hver enkelt frivillig rum til at rotere mellem de mange opgaver, så man ser flere sider af Food Court."
+              "I Food Court og Dining Service har vi under festivalen tre afviklingshold, som hjælper boderne med at yde deres ypperste, så de kan levere deres retter.<br>Til det har vi seks serviceteams som samarbejder med boderne under festivaldagene.<br>For at blive frivillig på vores afviklingshold skal du være fyldt 18 år når festivalen starter. <br>Som frivillig på vores afviklingshold kan opgaverne omfatte funktioner som:<br><ul><li>Service og renhold af publikumsområderne</li><li>Praktisk hjælp til bodernes backstage faciliteter</li><li>Adgangskontrol til Food Courts lukkede bagområder</li></ul><br>På en vagt får hver enkelt frivillig rum til at rotere mellem de mange opgaver, så man ser flere sider af Food Court."
           },
           dismantling: {
             headline: "Opgaven som frivllig",
@@ -247,7 +247,7 @@ export default {
           operations: {
             headline: "The tasks as a volunteer",
             text:
-              "In Food Court og Dining Service we have three operations teams during the festival. It is these teams, that help the food stalls do their best, in serving delicious meals<br>To handle these tasks, we have six serviceteams that works during the festival days.<br>As a volunteer on our operation teams you can work with tasks such as:<br><ul><li>Service and cleaning the audience areas</li><li>Helping the food stalls in their backstage areas</li><li>Access control to the closed backstage areas at Food Court</li></ul><br>During a shift we aim to change between tasks, so that every volunteer will get to see different parts of Food Court during a shift."
+              "In Food Court og Dining Service we have three operations teams during the festival. It is these teams, that help the food stalls do their best, in serving delicious meals<br>To handle these tasks, we have six serviceteams that works during the festival days.<br>In order to volunteer on our operations team, you will have to be at least 18 years old when the festival begins.<br>As a volunteer on our operation teams you can work with tasks such as:<br><ul><li>Service and cleaning the audience areas</li><li>Helping the food stalls in their backstage areas</li><li>Access control to the closed backstage areas at Food Court</li></ul><br>During a shift we aim to change between tasks, so that every volunteer will get to see different parts of Food Court during a shift."
           },
           dismantling: {
             headline: "The tasks as a volunteer",
