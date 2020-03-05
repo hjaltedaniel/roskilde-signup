@@ -73,6 +73,7 @@
               <a
                 :href="teams[session.team].link"
                 class="button is-link"
+                v-on:click="confirmMail(content[session.language].misc.rememberEmail)"
                 target="_blank"
               >{{ content[session.language].misc.cta }} {{ teams[session.team].name }}</a>
             </p>
@@ -202,7 +203,9 @@ export default {
               "Læs mere om her, og bliv tilmeldt Roskilde Festival på holdet: ",
             cta: "Tilmeld mig holdet: ",
             operation: "på driftshold",
-            dismantling: "på nedtagningshold"
+            dismantling: "på nedtagningshold",
+            rememberEmail:
+              "Husk at sende en mail til foodcourt@roskilde-festival.dk med dine oplysninger når du er tilmeldt på People."
           },
           general: {
             headline: "Food Court og Dining Service",
@@ -237,7 +240,9 @@ export default {
               "Read more about, and sign up as a volunteer at Roskilde Festival on the team: ",
             cta: "Sign up for the team: ",
             operation: "on operations team",
-            dismantling: "on dismantling team"
+            dismantling: "on dismantling team",
+            rememberEmail:
+              "Remember to send an e-mail to foodcourt@roskilde-festival.dk with your information, when you have signed up in People."
           },
           general: {
             headline: "Food Court and Dining Service",
@@ -285,6 +290,9 @@ export default {
       let res = text.replace("${hours}", hours);
       let end = res.replace("${period}", period);
       return end;
+    },
+    confirmMail: function(content) {
+      confirm(content);
     }
   }
 };
