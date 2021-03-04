@@ -1,7 +1,7 @@
 <template>
 <div class="app">
   <div class="chat">
-    <a href="mailto:foodcourt@roskilde-festival.dk">
+    <a :href="'mailto:' + allHome.edges[0].node.email">
       <img src="@/assets/chat.svg" />
     </a>
   </div>
@@ -21,7 +21,7 @@
     </div>
   </section>
   <div class="logo">
-    <img src="@/assets/logo.svg" />
+    <img :src="allHome.edges[0].node.topImage.url" />
   </div>
   <section class="hero first">
     <div class="hero-body">
@@ -87,6 +87,10 @@ allHome: {
         teaserText
         callToActionText
         rememberEmailText
+        email
+        topImage {
+          url
+        }
       }
     }
   }
