@@ -117,7 +117,6 @@ allTeam: {
         name
         shortTeamName
         hours
-        period
         link
         type {
           ... on Type {
