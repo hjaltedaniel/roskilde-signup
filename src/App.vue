@@ -44,32 +44,35 @@
       <div class="field is-grouped is-grouped-centered last">
         <p class="control">
           <a
-            :href="allTeam.edges[0].node.link"
             class="button is-link"
-            v-on:click="confirmMail(allHome.edges[0].node.rememberEmailText)"
+            v-on:click="session.isModal=true"
             target="_blank"
           >{{ allHome.edges[0].node.callToActionText}} {{ allTeam.edges[0].node.name }}</a>
         </p>
       </div>
     </div>
   </section>
+  <ContactForm :form="allHome.edges[0].node.signupForm" :active="session.isModal" :peopleLink="allTeam.edges[0].node.link" @closeModal="session.isModal=false"/>
 </div>
 </template>
 
 <script>
 import TextField from "@/components/TextField.vue";
+import ContactForm from "@/components/ContactForm.vue";
 import gql from 'graphql-tag';
 
 export default {
   name: "app",
   components: {
-    TextField
+    TextField,
+    ContactForm
   },
   data() {
     return {
       session: {
         language: "da",
-        team: String
+        team: String,
+        isModal: false
       }
     };
   },
@@ -91,6 +94,7 @@ allHome: {
         topImage {
           url
         }
+        signupForm
       }
     }
   }

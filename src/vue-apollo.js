@@ -23,7 +23,7 @@ const myLink = createHttpLink({
 
   const authLink = setContext((_, { headers }) => {
     // get the authentication token from whereever it exists - This is your choice.
-    const projectAlias = 'foodcourtsignup'
+    const projectAlias = 'dev-foodcourtsignup'
     // return the headers to the context so httpLink can read them
     return {
       headers: {
