@@ -30,6 +30,10 @@
         <h2
           class="subtitle"
         >{{ allHome.edges[0].node.teaserText }} {{ allTeam.edges[0].node.name }}</h2>
+        <div class="notification is-danger" v-if="allTeam.edges[0].node.teamStatus == 'Team full'" v-html="allHome.edges[0].node.teamIsFull">
+        </div>
+        <div class="notification is-warning" v-if="allTeam.edges[0].node.teamStatus == 'A few seats left'" v-html="allHome.edges[0].node.fewSeatsLeft">
+        </div>
       </div>
     </div>
   </section>
@@ -44,6 +48,7 @@
       <div class="field is-grouped is-grouped-centered last">
         <p class="control">
           <a
+            v-if="allTeam.edges[0].node.teamStatus != 'Team full'"
             :href="allTeam.edges[0].node.link"
             class="button is-link"
             v-on:click="confirmMail(allHome.edges[0].node.rememberEmailText)"
@@ -88,6 +93,8 @@ allHome: {
         callToActionText
         rememberEmailText
         email
+        fewSeatsLeft
+        teamIsFull
         topImage {
           url
         }
@@ -116,7 +123,7 @@ allTeam: {
       node {
         name
         shortTeamName
-        hours
+        teamStatus
         link
         type {
           ... on Type {
